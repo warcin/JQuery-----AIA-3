@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8" />
+ <title>jQuery</title>
+ <link href="Style.css" rel="stylesheet">
+ <script type="text/javascript"
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+ <script type="text/javascript">
+$(function () {
+ $('button:contains(\'A\')').click(function () {
+ $('#classic').addClass('asdf');
+ });
+ $('button:contains(\'B\')').click(function () {
+ $('#classic').removeClass('asdf');
+ });
+ $('button:contains(\'C\')').click(function () {
+ $('#toggle').toggleClass('asdf');
+ });
+
+ $('tr:even').addClass('asdf');
+ 
+ $('tr.a').not(':has(a.b)').addClass('aaaa');
+});
+
+ </script>
+</head>
+<body>
+<table>
+ <tr><td>First</td></tr>
+ <tr class='a'><td>Second</td></tr>
+ <tr class='a'><td>Third <a class='b'>b</a>  </td></tr>
+ <tr class='a'><td>Fourth <a class='c'>c</a></td></tr>
+ <tr><td>Fifth <a class='b'>b</a> </td></tr>
+ <tr><td>Sixth</td></tr>
+</table>
+<div><button>Text A</button><button>Text B</button><span id="classic">Adding/removing
+class</span></div>
+<div><button>Text C</button><span id="toggle">Toggling class</span></div>
+
+</body>
+</html>

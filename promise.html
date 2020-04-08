@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8" />
+ <title>Promise</title>
+ <script type="text/javascript"
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+ <script>
+ function promise(url) {
+	return new Promise(function(resolve, reject) {
+		function onError(e) {
+			reject(Error("Something broke!"));
+		}
+
+		function onLoad(e) {
+			if(req.status == 200){
+				resolve(req.responseText);
+			}
+			else{
+				reject(Error("Something went wrong, response status: "+req.status+", response: "+req.responseText));
+			}
+		}
+		
+	   
+	   var req = new XMLHttpRequest();
+	   req.open('GET', url, false); 
+	   req.onload = onLoad;
+	   req.onerror = onError;
+	   req.send(null);
+   
+    });
+	
+ }
+ 
+ function do_stuff(){
+	var url = 'guitars.json'; 
+	promise(url).then(function(response) {
+	console.log("Success!", response);
+	$("p").html(response);
+	}, function(error) {
+	console.error("Failed!", error);
+	$("p").html(error);
+	})
+ }
+ 
+$(document).ready(function(){
+  $("div").click(do_stuff);
+	
+});
+ 
+ </script>
+
+</head>
+<body>
+<div>Click me</div>
+<p></p>
+</body>
+</html>
